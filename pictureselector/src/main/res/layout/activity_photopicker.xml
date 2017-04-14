@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ResourceName">
+
+    <include layout="@layout/photopicker_toolbar" />
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_below="@+id/pickerToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="@dimen/space_size"
+        android:verticalSpacing="@dimen/space_size"
+        android:paddingBottom="?android:attr/actionBarSize"
+        android:clipToPadding="false"
+        android:columnWidth="@dimen/image_size"/>
+
+    <RelativeLayout
+        android:id="@+id/photo_picker_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="#cc000000">
+
+        <Button
+            android:id="@+id/btnAlbum"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/all_image"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:textSize="@dimen/action_text_size"
+            android:textColor="@color/action_text_color"
+            android:drawableRight="@drawable/text_indicator"/>
+
+        <Button
+            android:id="@+id/btnPreview"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/preview"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:textSize="@dimen/action_text_size"
+            android:enabled="false"
+            android:textColor="@color/action_text_color"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</RelativeLayout>

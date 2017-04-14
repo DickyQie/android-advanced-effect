@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    tools:ignore="ResourceName">
+  <item
+      android:id="@+id/action_discard"
+      android:title="@string/delete"
+      android:icon="@mipmap/ic_action_discard"
+      android:orderInCategory="100"
+      app:showAsAction="ifRoom"
+      />
+</menu>

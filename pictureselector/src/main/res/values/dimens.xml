@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="folder_padding" >10dp</dimen>
+    <dimen name="folder_cover_size">72dp</dimen>
+    <dimen name="image_size" >120dp</dimen>
+    <dimen name="space_size" >5dp</dimen>
+    <dimen name="action_text_size" >16sp</dimen>
+</resources>
