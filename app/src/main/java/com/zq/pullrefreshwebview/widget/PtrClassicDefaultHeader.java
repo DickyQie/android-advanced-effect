@@ -1,7 +1,6 @@
 package com.zq.pullrefreshwebview.widget;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -15,30 +14,27 @@ import android.widget.TextView;
 import com.zq.pullrefreshwebview.R;
 import com.zq.pullrefreshwebview.indicator.PtrIndicator;
 
-
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler {
 
-    private final static String KEY_SharedPreferences = "cube_ptr_classic_last_update";
-    private static SimpleDateFormat sDataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private int mRotateAniTime = 150;
     private RotateAnimation mFlipAnimation;
     private RotateAnimation mReverseFlipAnimation;
     private TextView mTitleTextView;
     private View mRotateView;
     private View mProgressBar;
-    private long mLastUpdateTime = -1;
     private TextView mLastUpdateTextView;
     private String mLastUpdateTimeKey;
     private boolean mShouldShowLastUpdate;
+    private Context context;
 
     private LastUpdateTimeUpdater mLastUpdateTimeUpdater = new LastUpdateTimeUpdater();
 
     public PtrClassicDefaultHeader(Context context) {
         super(context);
         initViews(null);
+        this.context=context;
     }
 
     public PtrClassicDefaultHeader(Context context, AttributeSet attrs) {
@@ -63,8 +59,7 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
 
         mTitleTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_title);
         mLastUpdateTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_last_update);
-        mProgressBar = header.findViewById(R.id.ptr_classic_header_rotate_view_progressbar);
-
+        mProgressBar =header.findViewById(R.id.ptr_classic_header_rotate_view_progressbar);
         resetView();
     }
 
@@ -142,13 +137,12 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         mLastUpdateTimeUpdater.start();
 
         mProgressBar.setVisibility(INVISIBLE);
-
         mRotateView.setVisibility(VISIBLE);
         mTitleTextView.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
             mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refreshing));
         } else {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refreshing));
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
         }
     }
 
@@ -159,7 +153,6 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         mProgressBar.setVisibility(VISIBLE);
         mTitleTextView.setVisibility(VISIBLE);
         mTitleTextView.setText(R.string.cube_ptr_refreshing);
-
         tryUpdateLastUpdateTime();
         mLastUpdateTimeUpdater.stop();
     }
@@ -169,69 +162,24 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
 
         hideRotateView();
         mProgressBar.setVisibility(INVISIBLE);
-
         mTitleTextView.setVisibility(VISIBLE);
         mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
 
-        // update last update time
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(KEY_SharedPreferences, 0);
-        if (!TextUtils.isEmpty(mLastUpdateTimeKey)) {
-            mLastUpdateTime = new Date().getTime();
-            sharedPreferences.edit().putLong(mLastUpdateTimeKey, mLastUpdateTime).commit();
-        }
     }
 
     private void tryUpdateLastUpdateTime() {
-        if (TextUtils.isEmpty(mLastUpdateTimeKey) || !mShouldShowLastUpdate) {
+        String time = getLastUpdateTime();
+        if (TextUtils.isEmpty(time)) {
             mLastUpdateTextView.setVisibility(GONE);
         } else {
-            String time = getLastUpdateTime();
-            if (TextUtils.isEmpty(time)) {
-                mLastUpdateTextView.setVisibility(GONE);
-            } else {
-                mLastUpdateTextView.setVisibility(VISIBLE);
-                mLastUpdateTextView.setText(time);
-            }
+            mLastUpdateTextView.setVisibility(VISIBLE);
+            mLastUpdateTextView.setText("最近更新：今天"+time);
         }
     }
 
     private String getLastUpdateTime() {
-
-        if (mLastUpdateTime == -1 && !TextUtils.isEmpty(mLastUpdateTimeKey)) {
-            mLastUpdateTime = getContext().getSharedPreferences(KEY_SharedPreferences, 0).getLong(mLastUpdateTimeKey, -1);
-        }
-        if (mLastUpdateTime == -1) {
-            return null;
-        }
-        long diffTime = new Date().getTime() - mLastUpdateTime;
-        int seconds = (int) (diffTime / 1000);
-        if (diffTime < 0) {
-            return null;
-        }
-        if (seconds <= 0) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(getContext().getString(R.string.cube_ptr_last_update));
-
-        if (seconds < 60) {
-            sb.append(seconds + getContext().getString(R.string.cube_ptr_seconds_ago));
-        } else {
-            int minutes = (seconds / 60);
-            if (minutes > 60) {
-                int hours = minutes / 60;
-                if (hours > 24) {
-                    Date date = new Date(mLastUpdateTime);
-                    sb.append(sDataFormat.format(date));
-                } else {
-                    sb.append(hours + getContext().getString(R.string.cube_ptr_hours_ago));
-                }
-
-            } else {
-                sb.append(minutes + getContext().getString(R.string.cube_ptr_minutes_ago));
-            }
-        }
-        return sb.toString();
+        SimpleDateFormat    sDateFormat    =   new    SimpleDateFormat("  hh:mm");
+        return    sDateFormat.format(new   java.util.Date());
     }
 
     @Override
@@ -263,16 +211,16 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
     private void crossRotateLineFromTopUnderTouch(PtrFrameLayout frame) {
         if (!frame.isPullToRefresh()) {
             mTitleTextView.setVisibility(VISIBLE);
-            mTitleTextView.setText(R.string.cube_ptr_refreshing);
+            mTitleTextView.setText(R.string.cube_ptr_refresh_complete);
         }
     }
 
     private void crossRotateLineFromBottomUnderTouch(PtrFrameLayout frame) {
         mTitleTextView.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refreshing));
-        } else {
             mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
+        } else {
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refreshing));
         }
     }
 

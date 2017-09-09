@@ -1,5 +1,6 @@
 package com.zq.pullrefreshwebview;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,13 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onPageFinished(WebView view, String url) {
-                mPtrFrame.refreshComplete();
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        mPtrFrame.refreshComplete();
+                    }
+                }, 1000);
             }
 
         });
@@ -63,15 +70,16 @@ public class MainActivity extends AppCompatActivity {
         mPtrFrame.setDurationToCloseHeader(1000);
         mPtrFrame.setPullToRefresh(false);
         mPtrFrame.setKeepHeaderWhenRefresh(true);
+
         mPtrFrame.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mPtrFrame.autoRefresh();
             }
-        }, 100);
+        }, 1000);
     }
     private void updateData() {
-        mWebView.loadUrl("https://my.oschina.net/zhangqie/blog");
+        mWebView.loadUrl("http://blog.csdn.net/dickyqie");
     }
 
 }

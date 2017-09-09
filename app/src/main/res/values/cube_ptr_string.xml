@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="cube_ptr_refreshing">加载中...</string>
+    <string name="cube_ptr_refreshing">正在努力刷新中...</string>
     <string name="cube_ptr_refresh_complete">加载完成.</string>
 
     <string name="cube_ptr_last_update">last update:&#160;</string>

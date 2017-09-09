@@ -19,16 +19,20 @@
                 android:id="@+id/ptr_classic_header_rotate_view_header_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#666666"
-                android:textSize="12sp" />
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:text="下拉刷新...."
+                />
 
             <TextView
                 android:id="@+id/ptr_classic_header_rotate_view_header_last_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textColor="#999999"
-                android:textSize="10sp" />
+                android:textColor="#6c6c6c"
+                android:textSize="10sp"
+                android:text="更新于：8-15 12:13"
+                />
         </LinearLayout>
 
         <FrameLayout
@@ -43,14 +47,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:src="@mipmap/arrow"
                />
 
-            <ProgressBar
+           <ProgressBar
                 android:id="@+id/ptr_classic_header_rotate_view_progressbar"
-                style="@android:style/Widget.ProgressBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+               android:indeterminateDrawable="@drawable/ab"
+               android:indeterminateBehavior="repeat"
+                />
         </FrameLayout>
     </RelativeLayout>
 
