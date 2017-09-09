@@ -1,7 +1,7 @@
-# Android 之WebView实现下拉刷新和其他相关刷新功能
- <p>最近项目中需要用到WebView下拉刷新的功能，经过查找资料终于完成了此功能，现在拿出来和大家分享一下。希望对大家有所帮助。</p> 
+  <p>最近项目中需要用到WebView下拉刷新的功能，经过查找资料终于完成了此功能，现在拿出来和大家分享一下。希望对大家有所帮助。</p> 
 <p>效果如下图：</p> 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="" src="http://images2015.cnblogs.com/blog/1041439/201704/1041439-20170413180719892-999209982.gif"></p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="" src="https://static.oschina.net/uploads/img/201709/09090925_9Nic.gif"></p> 
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <img alt="" height="356" src="https://static.oschina.net/uploads/img/201709/09090926_iytP.gif" width="400">&nbsp;</p> 
 <p>&nbsp;</p> 
 <p>&nbsp;</p> 
 <p>代码：</p> 
@@ -107,9 +107,8 @@ public class MainActivity extends AppCompatActivity {
 </code></pre> 
 <p><strong><span style="color:#800000">注：上图效果是参考他人写的</span></strong></p> 
 <p>更多控件实现下拉刷新效果图：&nbsp; 可以参考 <a href="https://github.com/DickyQie/android-advanced-effect/tree/pull-down-refresh" target="_blank" rel="nofollow">https://github.com/DickyQie/android-advanced-effect/tree/pull-down-refresh </a>&nbsp; 我就是参考此案例来实现的</p> 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="" src="http://images2015.cnblogs.com/blog/1041439/201704/1041439-20170414114146611-1508771868.png"></p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="" src="https://static.oschina.net/uploads/img/201709/09090926_IcFc.png"></p> 
 <p>&nbsp;</p> 
 <p>&nbsp;</p> 
 <p>更多实现方式 https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh</p> 
 <p>&nbsp;</p> 
-<span id="OSC_h1_1"></span>
