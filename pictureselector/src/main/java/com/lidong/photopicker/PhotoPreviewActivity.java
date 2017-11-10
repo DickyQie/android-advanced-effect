@@ -45,7 +45,7 @@ public class PhotoPreviewActivity extends AppCompatActivity implements PhotoPage
         if(pathArr != null){
             paths.addAll(pathArr);
         }
-
+        paths.remove(pathArr.size()-1);
         currentItem = getIntent().getIntExtra(EXTRA_CURRENT_ITEM, 0);
 
         mPagerAdapter = new PhotoPagerAdapter(this, paths);

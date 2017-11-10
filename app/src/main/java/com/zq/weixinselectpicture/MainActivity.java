@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lidong.photopicker.PhotoPickerActivity;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                 String imgs = (String) parent.getItemAtPosition(position);
                 if ("paizhao".equals(imgs) ){
                     PhotoPickerIntent intent = new PhotoPickerIntent(MainActivity.this);
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
                     startActivityForResult(intent, REQUEST_CAMERA_CODE);
                 }else{
+                    Toast.makeText(MainActivity.this,"1"+position,Toast.LENGTH_SHORT).show();
                     PhotoPreviewIntent intent = new PhotoPreviewIntent(MainActivity.this);
                     intent.setCurrentItem(position);
                     intent.setPhotoPaths(imagePaths);
