@@ -106,7 +106,7 @@ public class PhotoPickerActivity extends AppCompatActivity{
         if(mode == MODE_MULTI) {
             ArrayList<String> tmp = getIntent().getStringArrayListExtra(EXTRA_DEFAULT_SELECTED_LIST);
             if(tmp != null && tmp.size() > 0) {
-                resultList.addAll(tmp);
+               // resultList.addAll(tmp);
             }
         }
 
